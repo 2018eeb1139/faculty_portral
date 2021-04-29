@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Faculty Management Portal</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css ">
+  <script type="text/javascript">
+    var rid = 1;
+    var pid = 1;
+    var addResearch = function () {
+      var parent = document.getElementById("res_areas")
+      var field = document.createElement("input")
+      field.type = "text"
+      field.className = "form-control"
+      field.id = "research" + rid
+      field.name = "research" + rid
+      field.placeholder = "Research Area" + rid
+      parent.appendChild(field);
+      rid += 1;
+    }
+    var addPublication = function () {
+      var parent = document.getElementById("publications")
+      var field1 = document.createElement("input")
+      field1.type = "text"
+      field1.className = "form-control"
+      field1.id = "title" + pid
+      field1.name = "title" + pid
+      field1.placeholder = "Title" + pid
+      var field2 = document.createElement("input")
+      field2.type = "text"
+      field2.className = "form-control"
+      field2.id = "description" + pid
+      field2.name = "description" + pid
+      field2.placeholder = "description" + pid
+      parent.appendChild(document.createElement("br"))
+      parent.appendChild(field1)
+      parent.appendChild(field2)
+      pid += 1;
+    }
+  </script>
+
+  <style>
+    .content {
+      max-width: 500px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark center">
+  {% include 'includes/_navbar.html' %}
+  <div class=" container d-flex h-100 text-center text-white bg-dark center">
+    {% block body %}{% endblock %}
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+<script src="js/jquery-3.6.0.js"></script>
+
+</html>

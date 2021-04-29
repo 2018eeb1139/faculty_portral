@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="list-group" style="background-color: rgb(255, 255, 255);">
+        {% for profile in profiles %}
+        {% if profile['designation'] != 'Director' %}
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card border-dark text-dark" style="width:100%; padding: 30px; border-color: black;">
+                <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg"
+                    class="card-img-top" width="250px" height="250px" />
+                <div class="card-body">
+                    <a href="{{url_for('profile',name=profile['username'])}}"
+                        class="list-group-item list-group-item-action">
+                        
+                            <p><strong>{{profile['name']}}</strong></p>
+                            <p>{{profile['designation']}} </p>
+                            <p> {{profile['department']}}</p>
+                        
+                    </a>
+
+                    <form method="POST" action="{{ url_for('adminUpdate') }}">
+                        <!-- <form method="POST" action="#"> -->
+                        <div class="form-group">
+                            <label for="designation">Update Designation</label>
+                            <select class="form-control" id="name" name="name">
+                                <option value="{{profile['name']}}" selected>{{profile['name']}}</option>
+                            </select>
+                            <select class="form-control" id="designation" name="designation">
+                                <option value="DFA">Dean Faculty Affairs</option>
+                                <option value="HoD">Head of Department</option>
+                                <!-- <option value="CCF">Cross-Cutting Faclty</option> -->
+                                <option value="Faculty" selected>Faculty</option>
+                            </select>
+                        </div>
+                        <div style="padding: 2px;">
+                            <center> <button type="submit" class="btn btn-primary btn-lg">Update</button></center>
+                            <br></br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock body %}

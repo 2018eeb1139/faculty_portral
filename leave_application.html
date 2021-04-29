@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#start_date").change(function () {
+      var date = $(this).val();
+      date2 = new Date();
+      date = new Date(date);
+      if (date <= date2) {
+        $("#comment").attr("required", true);
+      }
+    });
+  });</script>
+<div class="jumbotron text-center">
+  <h1>Leave Aplication</h1>
+</div>
+<div class="container" style="width:600px;">
+
+  <form method="POST" action="{{ url_for('leave') }}">
+    <div class="form-group">
+      <label for="faculty_id">Faculty ID</label>
+      <input type="text" readonly class="form-control" id="faculty_id" name="faculty_id" value="{{faculty_id}}">
+    </div>
+    <div class="form-group">
+      <label for="duration">Days</label>
+      <input type="text" class="form-control" id="duration" name="duration" placeholder="Enter number of days" required>
+    </div>
+    <!-- <div class="form-group">
+      <label for="borwd_days">Borrowed Days</label>
+      <input type="text" class="form-control" id="borwd_days" name="borwd_days" value="0">
+    </div> -->
+    <div class="form-group">
+      <label for="start_date">Start Date</label>
+      <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Enter start date" required>
+    </div>
+    <div class="form-group">
+      <label for="comment">Please state your reason for leave</label>
+      <input type="text" class="form-control" id="comment" name="comment" placeholder="">
+    </div>
+    <br />
+    <center> <button type="submit" class="btn btn-primary">Apply</button></center>
+  </form>
+</div>
+{% endblock %}
